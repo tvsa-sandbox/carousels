@@ -345,10 +345,12 @@ class CircularCarousel {
     translateCarousel(live = false) {
         const {
             visualBox: $CONTAINER,
-            pixels, endPoint, startPoint, time,
+            pixels, endPoint, startPoint,
+            speedMobile, speedDesktop,
         } = this.config;
+        const TIME = (Utils.isMobile === "desktop") ? speedDesktop : speedMobile;
         const TRANSFORM = `transform: translate3d(-${pixels}px, 0px, 0px);`;
-        const TRANSITION = `transition:transform ${time}ms ease 0s`;
+        const TRANSITION = `transition:transform ${TIME}ms ease 0s`;
         const STYLE = TRANSFORM + ((live) ? TRANSITION : "");
         $CONTAINER.setAttribute("style", STYLE);
         setTimeout(() => {
@@ -357,7 +359,7 @@ class CircularCarousel {
                 this.translateCarousel();
             }
             this.config.isActive = true;
-        }, time);
+        }, TIME);
     }
 
     /* =========================================== */
@@ -377,7 +379,8 @@ class CircularCarousel {
             visualBox: "CarouselTrack",
             display: "flex",
             moveItems: 0,
-            time: 200,
+            speedDesktop: 500,
+            speedMobile: 200,
             pin: null,
             swipe: {
                 direction: "",
@@ -402,5 +405,49 @@ class Auxiliar {
         const CONFIG = JSON.stringify(config);
         const NEW_CONFIG = JSON.parse(CONFIG);
         const TEST = new CircularCarousel(NEW_CONFIG);
+    }
+}
+
+
+document.onreadystatechange = () => {
+if (document.readyState === "complete") {
+        console.time("CircularCarousel");
+        Auxiliar.init = {
+            arrowNext: "#Next",
+            arrowPrevious: "#Previous",
+            carouselTrack: "#Track",
+            pin: {
+                disabled: "Carousel__Item",
+                enabled: "Carousel__Item-Active"
+            },
+        };
+        Auxiliar.init = {
+            arrowNext: "#Next0",
+            arrowPrevious: "#Previous0",
+            carouselTrack: "#Track0",
+            pin: {
+                disabled: "Carousel__Item",
+                enabled: "Carousel__Item-Active"
+            },
+        };
+        Auxiliar.init = {
+            arrowNext: "#Next1",
+            arrowPrevious: "#Previous1",
+            carouselTrack: "#Track1",
+            pin: {
+                disabled: "Carousel__Item",
+                enabled: "Carousel__Item-Active"
+            },
+        };
+        Auxiliar.init = {
+            arrowNext: "#Next2",
+            arrowPrevious: "#Previous2",
+            carouselTrack: "#Track2",
+            pin: {
+                disabled: "Carousel__Item",
+                enabled: "Carousel__Item-Active"
+            },
+        };
+        console.timeEnd("CircularCarousel");
     }
 }
