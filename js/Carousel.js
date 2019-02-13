@@ -434,6 +434,7 @@ if (document.readyState === "complete") {
             arrowNext: "#Next1",
             arrowPrevious: "#Previous1",
             carouselTrack: "#Track1",
+            moveItems: 1,
             pin: {
                 disabled: "Carousel__Item",
                 enabled: "Carousel__Item-Active"
@@ -443,6 +444,7 @@ if (document.readyState === "complete") {
             arrowNext: "#Next2",
             arrowPrevious: "#Previous2",
             carouselTrack: "#Track2",
+            moveItems: 1,
             pin: {
                 disabled: "Carousel__Item",
                 enabled: "Carousel__Item-Active"
